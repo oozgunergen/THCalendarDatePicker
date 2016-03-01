@@ -108,4 +108,9 @@
  */
 - (void)setDateTitle:(NSString*)dateTitle;
 
+/*! Set Ok Button Visibility
+ * \param isVisible
+ */
+- (void)setOkButtonVisibility:(BOOL)isVisible;
+
 @end

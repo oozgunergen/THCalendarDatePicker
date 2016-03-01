@@ -24,6 +24,7 @@
     BOOL _allowSelectionOfSelectedDate;
     BOOL _clearAsToday;
     BOOL _autoCloseOnSelectDate;
+    BOOL _isOkButtonvisibility;
     NSUInteger _daysInHistory;
     NSUInteger _daysInFuture;
     BOOL _disableYearSwitch;
@@ -162,6 +163,7 @@
     [self addSwipeGestures];
     self.okBtn.enabled = [self shouldOkBeEnabled];
     [self.okBtn setImage:(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") ? [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok") inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] : [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok")]) forState:UIControlStateNormal];
+    [self.okBtn setHidden:_isOkButtonvisibility];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -559,6 +561,10 @@
 
 - (IBAction)closePressed:(id)sender {
     [self.delegate datePickerCancelPressed:self];
+}
+
+- (void)setOkButtonVisibility:(BOOL)isVisible{
+    _isOkButtonvisibility = isVisible;
 }
 
 #pragma mark - Hide/Show Clear Button
