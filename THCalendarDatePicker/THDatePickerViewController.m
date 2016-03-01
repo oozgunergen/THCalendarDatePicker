@@ -25,6 +25,7 @@
     BOOL _autoCloseOnSelectDate;
     BOOL _disableHistorySelection;
     BOOL _disableFutureSelection;
+    BOOL _isOkButtonvisibility;
     BOOL (^_dateHasItemsCallback)(NSDate *);
 }
 @property (nonatomic, strong) NSDate * firstOfCurrentMonth;
@@ -120,6 +121,7 @@
     [self addSwipeGestures];
     self.okBtn.enabled = [self shouldOkBeEnabled];
     [self.okBtn setImage:[UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok")] forState:UIControlStateNormal];
+    [self.okBtn setHidden:!_isOkButtonvisibility];
     [self redraw];
 }
 
@@ -445,6 +447,10 @@
 
 - (IBAction)closePressed:(id)sender {
     [self.delegate datePickerCancelPressed:self];
+}
+
+- (void)setOkButtonVisibility:(BOOL)isVisible{
+    _isOkButtonvisibility = isVisible;
 }
 
 #pragma mark - Hide/Show Clear Button

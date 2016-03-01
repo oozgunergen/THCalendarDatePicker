@@ -70,4 +70,9 @@
  */
 - (void)setDisableFutureSelection:(BOOL)disableFutureSelection;
 
+/*! Set Ok Button Visibility
+ * \param isVisible
+ */
+- (void)setOkButtonVisibility:(BOOL)isVisible;
+
 @end
