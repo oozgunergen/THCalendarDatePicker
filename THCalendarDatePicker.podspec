@@ -9,8 +9,7 @@ Pod::Spec.new do |s|
   s.platform     		= :ios, '6.1'
   s.requires_arc 		= true
   s.source_files 		= 'THCalendarDatePicker/*.{h,m}'
-  s.resources 	 		= ["THCalendarDatePicker/*.xib"]
-  s.resource_bundles 	= {'THCalendarDatePickerImages' => ['THCalendarDatePicker/Images.xcassets']}
+  s.resources       = ["THCalendarDatePicker/*.xib", "THCalendarDatePicker/Images.xcassets"]
   s.frameworks   	 	=  'QuartzCore'
   s.dependency 			'KNSemiModalViewController', '~> 0.3'
 end
