@@ -260,7 +260,11 @@
         int curX = (fullSize.width - 7*dayWidth)/2;
         NSDateComponents * comps = [_calendar components:NSCalendarUnitDay fromDate:[NSDate date]];
         NSCalendar *c = [NSCalendar currentCalendar];
-        [comps setDay:[c firstWeekday]+1];
+        [comps setDay:[c firstWeekday]-1];
+        if ([[NSLocale currentLocale].localeIdentifier isEqualToString:@"en_TR"]) {
+            [comps setDay:[c firstWeekday]+1];
+        }
+        
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
         [offsetComponents setDay:1];
