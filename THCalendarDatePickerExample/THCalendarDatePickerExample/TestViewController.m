@@ -15,14 +15,6 @@
 
 @implementation TestViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.curDate = [NSDate date];
@@ -32,16 +24,7 @@
 }
 
 -(void)refreshTitle {
-    if(self.curDate) {
-        [self.dateButton setTitle:[_formatter stringFromDate:_curDate] forState:UIControlStateNormal];
-    } else {
-        [self.dateButton setTitle:@"No date selected" forState:UIControlStateNormal];
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.dateButton setTitle:(self.curDate ? [_formatter stringFromDate:_curDate] : @"No date selected") forState:UIControlStateNormal];
 }
 
 - (IBAction)touchedButton:(id)sender {
@@ -53,8 +36,11 @@
     [self.datePicker setClearAsToday:YES];
     [self.datePicker setAutoCloseOnSelectDate:NO];
     [self.datePicker setAllowSelectionOfSelectedDate:YES];
-    [self.datePicker setDisableHistorySelection:YES];
-    [self.datePicker setDisableFutureSelection:NO];
+    [self.datePicker setDisableYearSwitch:YES];
+    //[self.datePicker setDisableFutureSelection:NO];
+    [self.datePicker setDaysInHistorySelection:1];
+    [self.datePicker setDaysInFutureSelection:0];
+//    [self.datePicker setDateTimeZoneWithName:@"UTC"];
     //[self.datePicker setAutoCloseCancelDelay:5.0];
     [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];
     [self.datePicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];
@@ -72,15 +58,15 @@
                                                                   }];
 }
 
+#pragma mark - THDatePickerDelegate
+
 - (void)datePickerDonePressed:(THDatePickerViewController *)datePicker {
     self.curDate = datePicker.date;
     [self refreshTitle];
-    //[self.datePicker slideDownAndOut];
     [self dismissSemiModalView];
 }
 
 - (void)datePickerCancelPressed:(THDatePickerViewController *)datePicker {
-    //[self.datePicker slideDownAndOut];
     [self dismissSemiModalView];
 }
 
