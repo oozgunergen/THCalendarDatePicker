@@ -261,6 +261,11 @@
         NSDateComponents * comps = [_calendar components:NSCalendarUnitDay fromDate:[NSDate date]];
         NSCalendar *c = [NSCalendar currentCalendar];
         [comps setDay:[c firstWeekday]-1];
+        
+        if (@fiable(iOS 12.0, *)) {
+            [comps setDay:[c firstWeekday]+1];
+        }
+        
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
         [offsetComponents setDay:1];
