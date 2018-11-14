@@ -262,7 +262,7 @@
         NSCalendar *c = [NSCalendar currentCalendar];
         [comps setDay:[c firstWeekday]-1];
         
-        if (@fiable(iOS 12.0, *)) {
+        if (@available(iOS 12.0, *)) {
             [comps setDay:[c firstWeekday]+1];
         }
         
