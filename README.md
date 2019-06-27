@@ -20,7 +20,7 @@ The original controller was not aware of orientation changes and was missing som
 
 ### CocoaPods
 
-Install with [CocoaPods](http://cocoapods.org) by adding the following to your Podfile:
+Install with [CocoaPods](http://cocoapods.org) by adding the following your Podfile:
 
 ####Objective-C
 
